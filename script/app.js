@@ -12,6 +12,14 @@ const showSynonyms = (arr) => {
   return htmlElements.join(" ");
 };
 
+// Pronounceing the word ?
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 /// For getting lessions and levels
 
 const loadLessions = () => {
@@ -141,7 +149,7 @@ const displayLevelWords = (words) => {
                 <div class="flex justify-between my-10 items-center">
                     <button onclick="loadWordDetails(${word.id})" class="bg-sky-200 hover:bg-sky-400 cursor-pointer w-8 rounded-md"><i class="fa-solid fa-circle-info"></i></button>
 
-                    <button class="bg-sky-200 hover:bg-sky-400 cursor-pointer w-8 rounded-md"><i class="fa-solid fa-volume-high"></i></button>
+                    <button onclick="pronounceWord('${word.word}')" class="bg-sky-200 hover:bg-sky-400 cursor-pointer w-8 rounded-md"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
         `;
     WordsContainer.append(wordCard);
